@@ -21,6 +21,7 @@
     <Content Include="app\css\app.css" />
     <Content Include="app\css\timeline.css" />
     <Content Include="app\image\City_of_sydney.jpg" />
+    <Content Include="app\image\Preloader_5.gif" />
     <Content Include="app\image\temp.jpg" />
     <Content Include="app\image\footer-bg.jpg" />
     <Content Include="app\view\about.html" />
