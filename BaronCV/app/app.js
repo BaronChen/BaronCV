@@ -177,7 +177,7 @@ var BaronCV;
     })();
     BaronCV.TopbarController = TopbarController;
 })(BaronCV || (BaronCV = {}));
-BaronCV.HeaderWrapController.$inject = ['$scope', 'pagePositionService', 'myResourceService'];
+BaronCV.TopbarController.$inject = ['$scope', 'pagePositionService', 'myResourceService'];
 myApp.addController("topbarController", BaronCV.TopbarController);
 var BaronCV;
 (function (BaronCV) {

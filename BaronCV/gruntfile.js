@@ -101,8 +101,7 @@ module.exports = function (grunt) {
 		},
 		copy: {
 			html: {
-				files: [{ src: './index.html', dest: '../../dist/index.html' },
-						{ src: './authComplete.html', dest: '../../dist/authComplete.html' }
+				files: [{ src: './index.html', dest: '../../dist/index.html' }
 						]
 			},
 			js: {
@@ -118,9 +117,27 @@ module.exports = function (grunt) {
 				expand: true           				
 			},
 			views: {
-				cwd: './app/views',
+				cwd: './app/view',
 				src: '**/*',
-				dest: '../../dist/app/views',
+				dest: '../../dist/app/view',
+				expand: true
+			},
+			appcss: {
+				cwd: './app/css',
+				src: '**/*',
+				dest: '../../dist/app/css',
+				expand: true
+			},
+			data: {
+				cwd: './app/data',
+				src: '**/*',
+				dest: '../../dist/app/data',
+				expand: true
+			},
+			image: {
+				cwd: './app/image',
+				src: '**/*',
+				dest: '../../dist/app/image',
 				expand: true
 			}
 		}
@@ -140,15 +157,18 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-usemin');
 	grunt.loadNpmTasks('grunt-ts');
 	// Default task(s).
-	//grunt.registerTask('default', [
-	//	'copy:html',
-	//	'copy:js',
-	//	'copy:css',
-	//	'copy:views',
-	//	'useminPrepare',
-	//	'concat',
-	//	'uglify',
-	//	'usemin'
-	//]);
+	grunt.registerTask('default', [
+		'copy:html',
+		'copy:js',
+		'copy:css',
+		'copy:views',
+		'copy:appcss',
+		'copy:data',
+		'copy:image',
+		'useminPrepare',
+		'concat',
+		'uglify',
+		'usemin'
+	]);
 
 };

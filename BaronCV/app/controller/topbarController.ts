@@ -29,5 +29,5 @@
 
 }
 
-BaronCV.HeaderWrapController.$inject = ['$scope', 'pagePositionService', 'myResourceService'];
+BaronCV.TopbarController.$inject = ['$scope', 'pagePositionService', 'myResourceService'];
 myApp.addController("topbarController", BaronCV.TopbarController); 
