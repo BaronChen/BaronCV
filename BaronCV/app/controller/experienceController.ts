@@ -11,7 +11,7 @@
 		private experienceResource: Services.IExperienceResource;
 
 
-		constructor($scope: IExperienceCtrlScope, myResourceService: Services.MyResourceService) {
+		constructor($scope: IExperienceCtrlScope, myResourceService: Services.MyResourceService, $rootScope:IRootScope) {
 			var self = this;
 			self.$scope = $scope;
 			self.myResourceService = myResourceService;
@@ -21,9 +21,11 @@
 			self.experienceResource.get({}, (experienceWrap) => {
 				self.$scope.myExperiences = new MyExperiences(experienceWrap);
 			});
+
+			$rootScope.experienceLoaded = true;
 		}
 	}
 }
 
-BaronCV.ExperienceController.$inject = ['$scope', 'myResourceService'];
+BaronCV.ExperienceController.$inject = ['$scope', 'myResourceService', '$rootScope'];
 myApp.addController('experienceController', BaronCV.ExperienceController);

@@ -2,6 +2,16 @@
 
 module BaronCV {
 	"use strict";
+
+	export interface IRootScope extends angular.IScope {
+		topbarLoaded: boolean;
+		aboutLoaded: boolean;
+		headerwrapLoaded : boolean;
+		skillLoaded: boolean;
+		contactLoaded: boolean;
+		experienceLoaded:boolean;
+	}
+
 	export class MyApp {
 		app: ng.IModule;
 

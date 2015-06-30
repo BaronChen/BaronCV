@@ -1,5 +1,13 @@
 /// <reference path="../typings/angularjs/angular.d.ts" />
 declare module BaronCV {
+    interface IRootScope extends angular.IScope {
+        topbarLoaded: boolean;
+        aboutLoaded: boolean;
+        headerwrapLoaded: boolean;
+        skillLoaded: boolean;
+        contactLoaded: boolean;
+        experienceLoaded: boolean;
+    }
     class MyApp {
         app: ng.IModule;
         constructor(name: string, modules: Array<string>);
@@ -23,7 +31,7 @@ declare module BaronCV {
         private $scope;
         private myResourceService;
         private aboutTextResource;
-        constructor($scope: IAboutCtrlScope, myResourceService: Services.MyResourceService);
+        constructor($scope: IAboutCtrlScope, myResourceService: Services.MyResourceService, $rootScope: IRootScope);
     }
 }
 declare module BaronCV {
@@ -35,7 +43,7 @@ declare module BaronCV {
     class CarouselController {
         private $scope;
         private myResourceService;
-        constructor($scope: ICarouselCtrlScope, myResourceService: Services.MyResourceService);
+        constructor($scope: ICarouselCtrlScope, myResourceService: Services.MyResourceService, $rootScope: IRootScope);
     }
 }
 declare module BaronCV {
@@ -47,7 +55,7 @@ declare module BaronCV {
         private $scope;
         private myResourceService;
         private experienceResource;
-        constructor($scope: IExperienceCtrlScope, myResourceService: Services.MyResourceService);
+        constructor($scope: IExperienceCtrlScope, myResourceService: Services.MyResourceService, $rootScope: IRootScope);
     }
 }
 declare module BaronCV {
@@ -60,7 +68,7 @@ declare module BaronCV {
         private pagePositionService;
         private myResourceService;
         private personalInfoResource;
-        constructor($scope: IHeaderWrapCtrlScope, pagePositionService: Services.PagePositionServices, myResourceService: Services.MyResourceService);
+        constructor($scope: IHeaderWrapCtrlScope, pagePositionService: Services.PagePositionServices, myResourceService: Services.MyResourceService, $rootScope: IRootScope);
         isBackgroudShowed(): boolean;
     }
 }
@@ -73,7 +81,7 @@ declare module BaronCV {
         private $scope;
         private myResourceService;
         private skillResource;
-        constructor($scope: ISkillCtrlScope, myResourceService: Services.MyResourceService);
+        constructor($scope: ISkillCtrlScope, myResourceService: Services.MyResourceService, $rootScope: IRootScope);
     }
 }
 declare module BaronCV {
@@ -83,7 +91,7 @@ declare module BaronCV {
     class TopbarController {
         private $scope;
         private pagePositionService;
-        constructor($scope: ITopbarCtrlScope, pagePositionService: Services.PagePositionServices, myResourceService: Services.MyResourceService);
+        constructor($scope: ITopbarCtrlScope, pagePositionService: Services.PagePositionServices, myResourceService: Services.MyResourceService, $rootScope: IRootScope);
         select(target: Services.Positions): void;
         isCurrent(target: Services.Positions): boolean;
         isBackgroudShowed(): boolean;

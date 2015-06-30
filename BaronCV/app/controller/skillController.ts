@@ -10,7 +10,7 @@
 		private myResourceService: Services.MyResourceService;
 		private skillResource: Services.ISkillResource;
 
-		constructor($scope: ISkillCtrlScope, myResourceService: Services.MyResourceService) {
+		constructor($scope: ISkillCtrlScope, myResourceService: Services.MyResourceService, $rootScope : IRootScope) {
 			var self = this;
 			self.$scope = $scope;
 			self.$scope.controller = this;
@@ -19,11 +19,13 @@
 
 			self.$scope.graphData = new GraphData(self.skillResource);
 			self.$scope.graphData.getData();
-			
+
+			$rootScope.skillLoaded = true;
+
 		}
 
 	}
 }
 
-BaronCV.SkillController.$inject = ['$scope', 'myResourceService'];
+BaronCV.SkillController.$inject = ['$scope', 'myResourceService', '$rootScope'];
 myApp.addController('skillController', BaronCV.SkillController);

@@ -12,7 +12,7 @@
 		private myResourceService: Services.MyResourceService;
 		
 
-		constructor($scope: ICarouselCtrlScope, myResourceService: Services.MyResourceService) {
+		constructor($scope: ICarouselCtrlScope, myResourceService: Services.MyResourceService, $rootScope: IRootScope) {
 			var self = this;
 			self.$scope = $scope;
 			self.$scope.controller = this;
@@ -31,11 +31,11 @@
 					text: 'If you reach this line, that means it took you some time to get to know me. Thank you very much. '
 				}
 			];
-	
-		
+
+			$rootScope.contactLoaded = true;
 		}
 	}
 }
 
-BaronCV.CarouselController.$inject = ['$scope', 'myResourceService'];
+BaronCV.CarouselController.$inject = ['$scope', 'myResourceService', '$rootScope'];
 myApp.addController('carouselController', BaronCV.CarouselController);

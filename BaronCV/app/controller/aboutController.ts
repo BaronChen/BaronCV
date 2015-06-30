@@ -9,7 +9,7 @@
 		private myResourceService: Services.MyResourceService;
 		private aboutTextResource: Services.IAboutTextResource;
 
-		constructor($scope: IAboutCtrlScope, myResourceService: Services.MyResourceService) {
+		constructor($scope: IAboutCtrlScope, myResourceService: Services.MyResourceService, $rootScope : IRootScope) {
 			var self = this;
 			self.myResourceService = myResourceService;
 			self.$scope = $scope;
@@ -20,10 +20,11 @@
 				self.$scope.aboutText = new AboutText(aboutTextWrap);
 			});
 
+			$rootScope.aboutLoaded = true;
 		}
 	}
 
 }
 
-BaronCV.AboutController.$inject = ['$scope', 'myResourceService'];
+BaronCV.AboutController.$inject = ['$scope', 'myResourceService', '$rootScope'];
 myApp.addController("aboutController", BaronCV.AboutController); 

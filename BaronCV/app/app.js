@@ -52,7 +52,7 @@ var BaronCV;
 (function (BaronCV) {
     'use strict';
     var AboutController = (function () {
-        function AboutController($scope, myResourceService) {
+        function AboutController($scope, myResourceService, $rootScope) {
             var self = this;
             self.myResourceService = myResourceService;
             self.$scope = $scope;
@@ -60,17 +60,18 @@ var BaronCV;
             self.aboutTextResource.get({}, function (aboutTextWrap) {
                 self.$scope.aboutText = new BaronCV.AboutText(aboutTextWrap);
             });
+            $rootScope.aboutLoaded = true;
         }
         return AboutController;
     })();
     BaronCV.AboutController = AboutController;
 })(BaronCV || (BaronCV = {}));
-BaronCV.AboutController.$inject = ['$scope', 'myResourceService'];
+BaronCV.AboutController.$inject = ['$scope', 'myResourceService', '$rootScope'];
 myApp.addController("aboutController", BaronCV.AboutController);
 var BaronCV;
 (function (BaronCV) {
     var CarouselController = (function () {
-        function CarouselController($scope, myResourceService) {
+        function CarouselController($scope, myResourceService, $rootScope) {
             var self = this;
             self.$scope = $scope;
             self.$scope.controller = this;
@@ -87,17 +88,18 @@ var BaronCV;
                     text: 'If you reach this line, that means it took you some time to get to know me. Thank you very much. '
                 }
             ];
+            $rootScope.contactLoaded = true;
         }
         return CarouselController;
     })();
     BaronCV.CarouselController = CarouselController;
 })(BaronCV || (BaronCV = {}));
-BaronCV.CarouselController.$inject = ['$scope', 'myResourceService'];
+BaronCV.CarouselController.$inject = ['$scope', 'myResourceService', '$rootScope'];
 myApp.addController('carouselController', BaronCV.CarouselController);
 var BaronCV;
 (function (BaronCV) {
     var ExperienceController = (function () {
-        function ExperienceController($scope, myResourceService) {
+        function ExperienceController($scope, myResourceService, $rootScope) {
             var self = this;
             self.$scope = $scope;
             self.myResourceService = myResourceService;
@@ -105,18 +107,19 @@ var BaronCV;
             self.experienceResource.get({}, function (experienceWrap) {
                 self.$scope.myExperiences = new BaronCV.MyExperiences(experienceWrap);
             });
+            $rootScope.experienceLoaded = true;
         }
         return ExperienceController;
     })();
     BaronCV.ExperienceController = ExperienceController;
 })(BaronCV || (BaronCV = {}));
-BaronCV.ExperienceController.$inject = ['$scope', 'myResourceService'];
+BaronCV.ExperienceController.$inject = ['$scope', 'myResourceService', '$rootScope'];
 myApp.addController('experienceController', BaronCV.ExperienceController);
 var BaronCV;
 (function (BaronCV) {
     'use strict';
     var HeaderWrapController = (function () {
-        function HeaderWrapController($scope, pagePositionService, myResourceService) {
+        function HeaderWrapController($scope, pagePositionService, myResourceService, $rootScope) {
             var self = this;
             self.pagePositionService = pagePositionService;
             self.myResourceService = myResourceService;
@@ -126,6 +129,7 @@ var BaronCV;
             self.personalInfoResource.get({}, function (personalInfoWrap) {
                 self.$scope.personalInfo = new BaronCV.PersonalInfo(personalInfoWrap);
             });
+            $rootScope.headerwrapLoaded = true;
         }
         HeaderWrapController.prototype.isBackgroudShowed = function () {
             return this.pagePositionService.isBackgroudShowed();
@@ -134,12 +138,12 @@ var BaronCV;
     })();
     BaronCV.HeaderWrapController = HeaderWrapController;
 })(BaronCV || (BaronCV = {}));
-BaronCV.HeaderWrapController.$inject = ['$scope', 'pagePositionService', 'myResourceService'];
+BaronCV.HeaderWrapController.$inject = ['$scope', 'pagePositionService', 'myResourceService', '$rootScope'];
 myApp.addController("headerWrapController", BaronCV.HeaderWrapController);
 var BaronCV;
 (function (BaronCV) {
     var SkillController = (function () {
-        function SkillController($scope, myResourceService) {
+        function SkillController($scope, myResourceService, $rootScope) {
             var self = this;
             self.$scope = $scope;
             self.$scope.controller = this;
@@ -147,22 +151,24 @@ var BaronCV;
             self.skillResource = self.myResourceService.getSkillesource();
             self.$scope.graphData = new BaronCV.GraphData(self.skillResource);
             self.$scope.graphData.getData();
+            $rootScope.skillLoaded = true;
         }
         return SkillController;
     })();
     BaronCV.SkillController = SkillController;
 })(BaronCV || (BaronCV = {}));
-BaronCV.SkillController.$inject = ['$scope', 'myResourceService'];
+BaronCV.SkillController.$inject = ['$scope', 'myResourceService', '$rootScope'];
 myApp.addController('skillController', BaronCV.SkillController);
 var BaronCV;
 (function (BaronCV) {
     'use strict';
     var TopbarController = (function () {
-        function TopbarController($scope, pagePositionService, myResourceService) {
+        function TopbarController($scope, pagePositionService, myResourceService, $rootScope) {
             var self = this;
             self.$scope = $scope;
             self.pagePositionService = pagePositionService;
             self.$scope.controller = this;
+            $rootScope.topbarLoaded = true;
         }
         TopbarController.prototype.select = function (target) {
             this.pagePositionService.selectPosition(target);
@@ -177,7 +183,7 @@ var BaronCV;
     })();
     BaronCV.TopbarController = TopbarController;
 })(BaronCV || (BaronCV = {}));
-BaronCV.TopbarController.$inject = ['$scope', 'pagePositionService', 'myResourceService'];
+BaronCV.TopbarController.$inject = ['$scope', 'pagePositionService', 'myResourceService', '$rootScope'];
 myApp.addController("topbarController", BaronCV.TopbarController);
 var BaronCV;
 (function (BaronCV) {

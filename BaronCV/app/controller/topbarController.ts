@@ -7,11 +7,12 @@
 	export class TopbarController {
 		private $scope: ITopbarCtrlScope;
 		private pagePositionService : Services.PagePositionServices;
-		constructor($scope: ITopbarCtrlScope, pagePositionService : Services.PagePositionServices, myResourceService: Services.MyResourceService) {
+		constructor($scope: ITopbarCtrlScope, pagePositionService : Services.PagePositionServices, myResourceService: Services.MyResourceService, $rootScope:IRootScope) {
 			var self = this;
 			self.$scope = $scope;
 			self.pagePositionService = pagePositionService;
 			self.$scope.controller = this;
+			$rootScope.topbarLoaded = true;
 		}
 
 		select(target: Services.Positions) {
@@ -29,5 +30,5 @@
 
 }
 
-BaronCV.TopbarController.$inject = ['$scope', 'pagePositionService', 'myResourceService'];
+BaronCV.TopbarController.$inject = ['$scope', 'pagePositionService', 'myResourceService', '$rootScope'];
 myApp.addController("topbarController", BaronCV.TopbarController); 

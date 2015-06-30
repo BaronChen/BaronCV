@@ -11,7 +11,7 @@
 		private myResourceService: Services.MyResourceService;
 		private personalInfoResource: Services.IPersonalInfoResource;
 
-		constructor($scope: IHeaderWrapCtrlScope, pagePositionService: Services.PagePositionServices, myResourceService: Services.MyResourceService) {
+		constructor($scope: IHeaderWrapCtrlScope, pagePositionService: Services.PagePositionServices, myResourceService: Services.MyResourceService, $rootScope:IRootScope) {
 			var self = this;	
 			self.pagePositionService = pagePositionService;
 			self.myResourceService = myResourceService;
@@ -24,6 +24,7 @@
 				self.$scope.personalInfo = new PersonalInfo(personalInfoWrap);				
 			});
 
+			$rootScope.headerwrapLoaded = true;
 		}
 
 		isBackgroudShowed() {
@@ -33,5 +34,5 @@
 
 }
 
-BaronCV.HeaderWrapController.$inject = ['$scope', 'pagePositionService', 'myResourceService'];
+BaronCV.HeaderWrapController.$inject = ['$scope', 'pagePositionService', 'myResourceService', '$rootScope'];
 myApp.addController("headerWrapController", BaronCV.HeaderWrapController);
