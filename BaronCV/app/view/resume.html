@@ -1,0 +1,44 @@
+﻿<div id="resume" name="resume"></div>
+<div id="experience" ng-controller="experienceController">
+	<div class="container desc">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<h2 class="section-title">Experience & Education</h2>
+			</div>
+			<div class="col-lg-2">
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<ul class="timeline">
+
+					<li ng-repeat="experience in myExperiences.experiences" ng-class-even="'timeline-inverted'">
+						<div class="timeline-badge {{experience.badgeStyle}}">
+							<i class="glyphicon {{experience.badge}}"></i>
+						</div>
+						<div class="timeline-panel" my-glowing>
+							<div class="timeline-heading">
+								<h3 class="timeline-title">{{experience.title}}</h3>
+								<h4 class="timeline-title">{{experience.company}}</h4>
+								<p>
+									<small><i class="glyphicon glyphicon-time"></i> {{experience.time}} </small>
+								</p>
+							</div>
+							<div class="timeline-body">
+								<p>{{experience.description}}</p>
+							</div>
+						</div>
+					</li>
+
+				</ul>
+			</div>
+
+			<div class="col-lg-2">
+
+			</div>
+
+		</div>
+		<br>
+	</div>
+</div>

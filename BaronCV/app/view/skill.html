@@ -1,0 +1,27 @@
+﻿<div id="skillswrap" ng-controller="skillController">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="section-title">Skills</h2>
+			</div>
+		</div><!--/.row -->
+		<br/>
+		<div class="row">
+			<div class="col-lg-6">
+				<canvas  class="chart chart-radar" data="graphData.programmingSkill.data" labels="graphData.programmingSkill.labels" colours="graphData.colors" options="graphData.graphOptions"></canvas>
+			</div>
+			<div class="col-lg-6">
+				<canvas class="chart chart-radar" data="graphData.frontEndSkill.data" labels="graphData.frontEndSkill.labels" colours="graphData.colors" options="graphData.graphOptions"></canvas>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
+				<canvas class="chart chart-radar" data="graphData.databaseSkill.data" labels="graphData.databaseSkill.labels" colours="graphData.colors" options="graphData.graphOptions"></canvas>
+			</div>
+			<div class="col-lg-6">
+				<canvas  class="chart chart-radar" data="graphData.otherSkill.data" labels="graphData.otherSkill.labels" colours="graphData.colors" options="graphData.graphOptions"></canvas>
+			</div>
+		</div>
+		<br>
+	</div><!--/.container -->
+</div><!--/ #skillswrap -->

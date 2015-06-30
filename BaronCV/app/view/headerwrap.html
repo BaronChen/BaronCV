@@ -1,0 +1,14 @@
+﻿<div id="headerwrap" ng-controller="headerWrapController" >
+	<div class="container">
+		<div class="row centered">
+			<div class="col-lg-12">
+				<h1>{{personalInfo.firstName}} {{personalInfo.lastName}}</h1>
+				<h3>{{personalInfo.jobTitle}} | {{personalInfo.email}}</h3>
+			</div><!--/.col-lg-12 -->
+		</div><!--/.row -->
+	</div><!--/.container -->
+
+	<p class="scrolldown" ng-hide="controller.isBackgroudShowed()">
+		<a scroll-to="about"><i class="fa fa-arrow-circle-down fa-4x animated infinite bounce"></i></a>
+	</p>
+</div><!--/.#headerwrap -->
