@@ -44,7 +44,10 @@ module.exports = function (grunt) {
 					'angualar-chart.js/angular-chart.min.js.map': 'angular-chart.js/dist/angular-chart.min.js.map',
 					'angular-touch/angular-touch.js': 'angular-touch/angular-touch.js',
 					'angular-touch/angular-touch.min.js': 'angular-touch/angular-touch.min.js',
-					'angular-touch/angular-touch.min.js.map': 'angular-touch/angular-touch.min.js.map',
+					'angular-touch/angular-touch.min.js.map': 'angular-touch/angular-touch.min.js.map'
+					//'imagesloaded/imagesloaded.pkgd.js': 'imagesloaded/imagesloaded.pkgd.js',
+					//'imagesloaded/imagesloaded.pkgd.min.js': 'imagesloaded/imagesloaded.pkgd.min.js',
+					//'angular-images-loaded/angular-images-loaded.js': 'angular-images-loaded/angular-images-loaded.js'
 				}
 			},
 			css: {

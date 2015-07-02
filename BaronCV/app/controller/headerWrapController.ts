@@ -11,6 +11,8 @@
 		private myResourceService: Services.MyResourceService;
 		private personalInfoResource: Services.IPersonalInfoResource;
 
+		public imagesLoadedEvent  : any;
+
 		constructor($scope: IHeaderWrapCtrlScope, pagePositionService: Services.PagePositionServices, myResourceService: Services.MyResourceService, $rootScope:IRootScope) {
 			var self = this;	
 			self.pagePositionService = pagePositionService;
@@ -24,7 +26,20 @@
 				self.$scope.personalInfo = new PersonalInfo(personalInfoWrap);				
 			});
 
-			$rootScope.headerwrapLoaded = true;
+			self.$scope.controller.imagesLoadedEvent = {
+
+				always: (instance) => {
+				},
+
+				done: (instance) => {
+					$rootScope.headerwrapLoaded = true;
+				},
+
+				fail: (instance) => {
+				}
+
+			};
+
 		}
 
 		isBackgroudShowed() {

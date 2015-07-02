@@ -97,7 +97,7 @@ a:after {
 	top: 0;
 	left: 0;
 	right: 0;
-	z-index: 10000;
+	z-index: 5000;
 	overflow: visible;
 	font: normal 16px/24px  'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 	-webkit-transform: translateZ(0);
@@ -427,9 +427,23 @@ sm {
 }
 
 
-@media screen and (max-height: 800px) {
+@media screen and (max-height: 800px) and (min-height: 480px){
 	#headerwrap h1 {
 		font-size: 40px;
+	}
+
+	#headerwrap {
+		padding-top: 25%;
+	}
+}
+
+@media screen and (max-height: 480px){
+	#headerwrap h1 {
+		font-size: 40px;
+	}
+
+	#headerwrap {
+		padding-top: 12%;
 	}
 }
 
@@ -448,9 +462,6 @@ sm {
 		width: 70%;
 	}
 
-	#headerwrap {
-		padding-top: 25%;
-	}
 }
 
 @media screen and (min-height:961px) {

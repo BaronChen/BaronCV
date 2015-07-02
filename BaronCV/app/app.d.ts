@@ -68,6 +68,7 @@ declare module BaronCV {
         private pagePositionService;
         private myResourceService;
         private personalInfoResource;
+        imagesLoadedEvent: any;
         constructor($scope: IHeaderWrapCtrlScope, pagePositionService: Services.PagePositionServices, myResourceService: Services.MyResourceService, $rootScope: IRootScope);
         isBackgroudShowed(): boolean;
     }

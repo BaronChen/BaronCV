@@ -27,7 +27,7 @@ var BaronCV;
     })();
     BaronCV.MyApp = MyApp;
 })(BaronCV || (BaronCV = {}));
-var myApp = new BaronCV.MyApp("baronCV", ['ngAnimate', 'ngTouch', 'ui.bootstrap', 'ngRoute', 'smoothScroll', 'pc035860.scrollWatch', 'ui.router', 'ngResource', 'chart.js', 'angular-images-loaded']);
+var myApp = new BaronCV.MyApp("baronCV", ['ngAnimate', 'ngTouch', 'ui.bootstrap', 'ngRoute', 'smoothScroll', 'pc035860.scrollWatch', 'ui.router', 'ngResource', 'chart.js']);
 var BaronCV;
 (function (BaronCV) {
     var Config;
@@ -129,15 +129,7 @@ var BaronCV;
             self.personalInfoResource.get({}, function (personalInfoWrap) {
                 self.$scope.personalInfo = new BaronCV.PersonalInfo(personalInfoWrap);
             });
-            self.$scope.controller.imagesLoadedEvent = {
-                always: function (instance) {
-                },
-                done: function (instance) {
-                    $rootScope.headerwrapLoaded = true;
-                },
-                fail: function (instance) {
-                }
-            };
+            $rootScope.headerwrapLoaded = true;
         }
         HeaderWrapController.prototype.isBackgroudShowed = function () {
             return this.pagePositionService.isBackgroudShowed();
