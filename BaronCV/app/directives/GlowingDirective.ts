@@ -13,16 +13,13 @@
 		}
 
 		link = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
-			//element.bind('mouseover', () => {
-			//	element.addClass('glowing');
+			element.bind('mouseover', () => {
+				element.addClass('glowing');
+				element.removeClass('my-text-muted');
 
-			//});
+			});
 
-			//element.bind('mouseleave', () => {
-			//	element.removeClass('glowing');
-			
-			//});
-			angular.element(this.$window).bind('scroll', () => {
+			element.bind('mouseleave', () => {
 				var windowHeight = this.$window.innerHeight;
 				var scrollHeight = this.$window.pageYOffset;
 				var elementTopHeight = element.offset().top;
@@ -30,6 +27,20 @@
 
 				var targetHeoght = scrollHeight + windowHeight / 2;
 
+				if (elementTopHeight > targetHeoght || elementTopHeight + elementHeight <= targetHeoght) {
+	
+					element.removeClass('glowing');
+					element.addClass('my-text-muted');
+				}
+			
+			});
+			angular.element(this.$window).bind('scroll', () => {
+				var windowHeight = this.$window.innerHeight;
+				var scrollHeight = this.$window.pageYOffset;
+				var elementTopHeight = element.offset().top;
+				var elementHeight = element.innerHeight();
+
+				var targetHeoght = scrollHeight + windowHeight / 2;
 				if (elementTopHeight <= targetHeoght && elementTopHeight + elementHeight > targetHeoght) {
 					element.addClass('glowing');
 					element.removeClass('my-text-muted');

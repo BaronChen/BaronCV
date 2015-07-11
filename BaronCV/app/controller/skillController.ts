@@ -1,5 +1,6 @@
 ﻿module BaronCV {
 	export interface ISkillCtrlScope extends ng.IScope {
+		title: string;
 		graphData: GraphData;
 		controller: SkillController;
 	}

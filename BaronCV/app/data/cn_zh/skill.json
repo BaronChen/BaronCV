@@ -1,12 +1,13 @@
 ﻿{
+    "title": "技能",
     "programmingSkill": {
         "data": [ [ 95, 90, 85, 80, 90, 95 ] ],
         "initData": [ [ 0, 0, 0, 0, 0, 0 ] ],
-        "labels": [ "C#", ".Net", "OO Design", "Java", "REST", "MVC" ]
+        "labels": [ "C#", ".Net", "面向对象程序设计", "Java", "REST", "MVC" ]
     },
 
     "frontEndSkill": {
-        "data": [ [ 95, 85, 75, 85, 90, 85] ],
+        "data": [ [ 95, 85, 75, 85, 90, 85 ] ],
         "initData": [ [ 0, 0, 0, 0, 0, 0 ] ],
         "labels": [ "JQuery", "Javascript", "CSS", "Html", "AngularJS", "Typescript" ]
     },
@@ -14,13 +15,13 @@
     "databaseSkill": {
         "data": [ [ 95, 90, 75, 85, 90, 85 ] ],
         "initData": [ [ 0, 0, 0, 0, 0, 0 ] ],
-        "labels": [ "SQL", "PostgreSQL", "MySQL", "SQL Server", "Databse Design", "XML/XSLT" ]
+        "labels": [ "SQL", "PostgreSQL", "MySQL", "SQL Server", "数据库设计", "XML/XSLT" ]
     },
 
     "otherSkill": {
-        "data": [[95, 50, 55, 90, 100, 100]],
-        "initData": [[0, 0, 0, 0, 0]],
-        "labels": ["Video Game", "Sport", "Drinking", "Communication", "Have fun!", "Attitude"]
+        "data": [ [ 95, 50, 55, 90, 100, 100 ] ],
+        "initData": [ [ 0, 0, 0, 0, 0 ] ],
+        "labels": [ "电子游戏", "运动", "偶尔喝几杯", "交流", "Have fun!", "态度" ]
     }
 
 }

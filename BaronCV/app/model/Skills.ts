@@ -19,6 +19,8 @@
 		databaseSkill: SkillSet;
 		otherSkill: SkillSet;
 
+		title:string;
+
 		skillWrap: Services.ISkillWrap;
 
 		graphOptions: any;
@@ -36,6 +38,7 @@
 			this.skillResource.get({}, (skillWrap) => {
 				self.skillWrap = skillWrap;
 				self.init();
+				self.title = skillWrap.title;
 			});
 		}
 

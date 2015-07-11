@@ -2,6 +2,7 @@
 	'use strict';
 	export interface IAboutCtrlScope extends ng.IScope {
 		aboutText: AboutText;
+		title:string;
 	}
 
 	export class AboutController {
@@ -18,6 +19,7 @@
 
 			self.aboutTextResource.get({}, (aboutTextWrap) => {
 				self.$scope.aboutText = new AboutText(aboutTextWrap);
+				self.$scope.title = aboutTextWrap.title;
 			});
 
 			$rootScope.aboutLoaded = true;

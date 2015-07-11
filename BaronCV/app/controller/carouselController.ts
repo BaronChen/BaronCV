@@ -25,10 +25,10 @@
 					text: 'As a full stack developer, I enjoy doing logical and algorithmic stuff. '
 				},
 				{
-					text: 'I love my life and my work. Most importantly, I am always looking for opportunity to make a difference to the world.'
+					text: 'I love my life and my work. Most importantly, I am always looking for opportunities to make a difference to the world.'
 				},
 				{
-					text: 'If you reach this line, that means it took you some time to get to know me. Thank you very much. '
+					text: 'Thank you very much for your precious time~'
 				}
 			];
 

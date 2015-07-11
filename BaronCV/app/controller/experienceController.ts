@@ -1,5 +1,6 @@
 ﻿module BaronCV {
 	export interface IExperienceCtrlScope extends ng.IScope {
+		title: string;
 		controller: ExperienceController;
 		myExperiences : MyExperiences;
 	}
@@ -20,6 +21,7 @@
 
 			self.experienceResource.get({}, (experienceWrap) => {
 				self.$scope.myExperiences = new MyExperiences(experienceWrap);
+				self.$scope.title = experienceWrap.title;
 			});
 
 			$rootScope.experienceLoaded = true;

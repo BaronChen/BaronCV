@@ -1,4 +1,5 @@
 ﻿module BaronCV.Config {
+
 	export  class Config{
 		constructor($stateProvider: ng.ui.IStateProvider, $urlRouterProvider : ng.ui.IUrlRouterProvider) {
 			$urlRouterProvider.otherwise("/home");

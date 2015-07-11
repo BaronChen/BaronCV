@@ -7,6 +7,7 @@ declare module BaronCV {
         skillLoaded: boolean;
         contactLoaded: boolean;
         experienceLoaded: boolean;
+        locale: string;
     }
     class MyApp {
         app: ng.IModule;
@@ -26,6 +27,7 @@ declare module BaronCV.Config {
 declare module BaronCV {
     interface IAboutCtrlScope extends ng.IScope {
         aboutText: AboutText;
+        title: string;
     }
     class AboutController {
         private $scope;
@@ -48,6 +50,7 @@ declare module BaronCV {
 }
 declare module BaronCV {
     interface IExperienceCtrlScope extends ng.IScope {
+        title: string;
         controller: ExperienceController;
         myExperiences: MyExperiences;
     }
@@ -75,6 +78,7 @@ declare module BaronCV {
 }
 declare module BaronCV {
     interface ISkillCtrlScope extends ng.IScope {
+        title: string;
         graphData: GraphData;
         controller: SkillController;
     }
@@ -162,6 +166,7 @@ declare module BaronCV {
         frontEndSkill: SkillSet;
         databaseSkill: SkillSet;
         otherSkill: SkillSet;
+        title: string;
         skillWrap: Services.ISkillWrap;
         graphOptions: any;
         colors: any;
@@ -181,11 +186,13 @@ declare module BaronCV.Services {
     interface IPersonalInfoResource extends ng.resource.IResourceClass<IPersonalInfoWrap> {
     }
     interface IAboutTextWrap extends ng.resource.IResource<IAboutTextWrap> {
+        title: string;
         aboutText: string;
     }
     interface IAboutTextResource extends ng.resource.IResourceClass<IAboutTextWrap> {
     }
     interface ISkillWrap extends ng.resource.IResource<ISkillWrap> {
+        title: string;
         programmingSkill: SkillSet;
         frontEndSkill: SkillSet;
         databaseSkill: SkillSet;
@@ -194,13 +201,15 @@ declare module BaronCV.Services {
     interface ISkillResource extends ng.resource.IResourceClass<ISkillWrap> {
     }
     interface IExperienceWrap extends ng.resource.IResource<IExperienceWrap> {
+        title: string;
         experiences: Experience[];
     }
     interface IExperienceResource extends ng.resource.IResourceClass<IExperienceWrap> {
     }
     class MyResourceService {
         private $resource;
-        constructor($resource: ng.resource.IResourceService);
+        private locale;
+        constructor($resource: ng.resource.IResourceService, $rootScope: IRootScope);
         getPersonalInforResource(): IPersonalInfoResource;
         getAboutTextResource(): IAboutTextResource;
         getSkillesource(): ISkillResource;

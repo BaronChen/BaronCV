@@ -1,8 +1,9 @@
 ﻿{
+    "title": "Experience & Education",
     "experiences": [
         {
             "title": "Software Engineer",
-            "company": "Class Financial System",
+            "company": "Class Financial System, Sydney",
             "time": "Jul 2014 - Now",
             "badge": "glyphicon-file",
             "badgeStyle": "success",
@@ -10,7 +11,7 @@
         },
         {
             "title": "Full Stack .Net Programmer",
-            "company": "Quad Services",
+            "company": "Quad Services, Sydney",
             "time": "Sep 2013 - Jul 2014",
             "badge": "glyphicon-align-justify",
             "badgeStyle": "warning",
@@ -18,7 +19,7 @@
         },
         {
             "title": "Master of Information Technology",
-            "company": "University of New South Wales",
+            "company": "University of New South Wales, Sydney",
             "time": "Jul 2011 - Jul 2013",
             "badge": "glyphicon-book",
             "badgeStyle": "info",
@@ -26,7 +27,7 @@
         },
         {
             "title": "Bachelor of Automation Engineering",
-            "company": "Zhejiang University",
+            "company": "Zhejiang University, China",
             "time": "Jul 2007 - Jun 2011",
             "badge": "glyphicon-folder-open",
             "badgeStyle": "danger",

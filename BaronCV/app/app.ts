@@ -9,7 +9,9 @@ module BaronCV {
 		headerwrapLoaded : boolean;
 		skillLoaded: boolean;
 		contactLoaded: boolean;
-		experienceLoaded:boolean;
+		experienceLoaded: boolean;
+
+		locale:string;
 	}
 
 	export class MyApp {
@@ -18,8 +20,14 @@ module BaronCV {
 		constructor(name: string, modules: Array<string>) {
 			this.app = angular.module(name, modules);
 			this.app.run([
-				'$rootScope', $rootScope => {
+				'$rootScope', '$location', ($rootScope, $location) => {
 					$rootScope.Positions = Services.Positions;
+
+					if ($location.search().locale && $location.search().locale == 'cn_zh') {
+						$rootScope.locale = $location.search().locale;
+					} else {
+						$rootScope.locale = 'en_au';
+					}
 				}
 			]);
 		}

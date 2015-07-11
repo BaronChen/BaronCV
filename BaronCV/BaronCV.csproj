@@ -150,11 +150,15 @@
     <Content Include="js\angular-resource\README.md" />
     <Content Include="css\angualar-chart.js\angular-chart.css.map" />
     <Content Include="js\angualar-chart.js\angular-chart.min.js.map" />
-    <Content Include="app\data\personalInfo.json" />
-    <Content Include="app\data\about.json" />
-    <Content Include="app\data\skill.json" />
+    <Content Include="app\data\en_au\personalInfo.json" />
+    <Content Include="app\data\en_au\about.json" />
+    <Content Include="app\data\en_au\skill.json" />
     <Content Include="js\angular-touch\angular-touch.min.js.map" />
-    <Content Include="app\data\experience.json" />
+    <Content Include="app\data\en_au\experience.json" />
+    <Content Include="app\data\cn_zh\skill.json" />
+    <Content Include="app\data\cn_zh\about.json" />
+    <Content Include="app\data\cn_zh\experience.json" />
+    <Content Include="app\data\cn_zh\personalInfo.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
