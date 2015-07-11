@@ -135,6 +135,9 @@ var BaronCV;
             self.$scope.controller = this;
             self.$location = $location;
             self.$window = $window;
+            var url = this.parseUrtl(this.$location.absUrl());
+            self.$scope.enUrl = url + "#/home";
+            self.$scope.cnUrl = url + "#/home?locale=cn_zh";
             self.personalInfoResource = self.myResourceService.getPersonalInforResource();
             self.personalInfoResource.get({}, function (personalInfoWrap) {
                 self.$scope.personalInfo = new BaronCV.PersonalInfo(personalInfoWrap);
@@ -153,12 +156,19 @@ var BaronCV;
             return this.pagePositionService.isBackgroudShowed();
         };
         HeaderWrapController.prototype.changeToEn = function () {
-            this.$location.url('/home');
-            this.$window.location.reload();
+            var url = this.parseUrtl(this.$location.absUrl()) + "#/home";
+            window.location.href = url;
+            window.location.reload(true);
         };
         HeaderWrapController.prototype.changeToCn = function () {
-            this.$location.url('/home?locale=cn_zh');
-            this.$window.location.reload();
+            var url = this.parseUrtl(this.$location.absUrl()) + "#/home?locale=cn_zh";
+            window.location.href = url;
+            window.location.reload(true);
+        };
+        HeaderWrapController.prototype.parseUrtl = function (absUrl) {
+            var parser = document.createElement('a');
+            parser.href = absUrl;
+            return parser.protocol + "//" + parser.host + "/";
         };
         return HeaderWrapController;
     })();

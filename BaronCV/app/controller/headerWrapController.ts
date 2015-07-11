@@ -2,6 +2,8 @@
 	'use strict';
 	export interface IHeaderWrapCtrlScope extends ng.IScope {
 		personalInfo: PersonalInfo;
+		enUrl: string;
+		cnUrl: string;
 		controller: HeaderWrapController;
 	}
 
@@ -24,6 +26,10 @@
 
 			self.$location = $location;
 			self.$window = $window;
+
+			var url = this.parseUrtl(this.$location.absUrl());
+			self.$scope.enUrl = url + "#/home";
+			self.$scope.cnUrl = url + "#/home?locale=cn_zh";
 
 			self.personalInfoResource = self.myResourceService.getPersonalInforResource();
 
@@ -52,17 +58,27 @@
 		}
 
 		changeToEn() {
-			this.$location.url('/home');
+			var url = this.parseUrtl(this.$location.absUrl()) + "#/home";
 
-			this.$window.location.reload();
+			window.location.href = url;
+
+			window.location.reload(true);
 		}
 
 		changeToCn() {
 
-			this.$location.url('/home?locale=cn_zh');
+			var url = this.parseUrtl(this.$location.absUrl()) + "#/home?locale=cn_zh";
 
-			this.$window.location.reload();
+			window.location.href = url;
 
+			window.location.reload(true);
+		}
+
+		private parseUrtl(absUrl: string) {
+			var parser = document.createElement('a');
+			parser.href = absUrl;
+
+			return parser.protocol + "//" + parser.host +"/";
 		}
 	}
 

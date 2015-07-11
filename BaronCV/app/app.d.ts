@@ -64,6 +64,8 @@ declare module BaronCV {
 declare module BaronCV {
     interface IHeaderWrapCtrlScope extends ng.IScope {
         personalInfo: PersonalInfo;
+        enUrl: string;
+        cnUrl: string;
         controller: HeaderWrapController;
     }
     class HeaderWrapController {
@@ -78,6 +80,7 @@ declare module BaronCV {
         isBackgroudShowed(): boolean;
         changeToEn(): void;
         changeToCn(): void;
+        private parseUrtl(absUrl);
     }
 }
 declare module BaronCV {
