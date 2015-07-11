@@ -6,8 +6,14 @@ var BaronCV;
         function MyApp(name, modules) {
             this.app = angular.module(name, modules);
             this.app.run([
-                '$rootScope', function ($rootScope) {
+                '$rootScope', '$location', function ($rootScope, $location) {
                     $rootScope.Positions = BaronCV.Services.Positions;
+                    if ($location.search().locale && $location.search().locale == 'cn_zh') {
+                        $rootScope.locale = $location.search().locale;
+                    }
+                    else {
+                        $rootScope.locale = 'en_au';
+                    }
                 }
             ]);
         }
@@ -59,6 +65,7 @@ var BaronCV;
             self.aboutTextResource = self.myResourceService.getAboutTextResource();
             self.aboutTextResource.get({}, function (aboutTextWrap) {
                 self.$scope.aboutText = new BaronCV.AboutText(aboutTextWrap);
+                self.$scope.title = aboutTextWrap.title;
             });
             $rootScope.aboutLoaded = true;
         }
@@ -82,10 +89,10 @@ var BaronCV;
                     text: 'As a full stack developer, I enjoy doing logical and algorithmic stuff. '
                 },
                 {
-                    text: 'I love my life and my work. Most importantly, I am always looking for opportunity to make a difference to the world.'
+                    text: 'I love my life and my work. Most importantly, I am always looking for opportunities to make a difference to the world.'
                 },
                 {
-                    text: 'If you reach this line, that means it took you some time to get to know me. Thank you very much. '
+                    text: 'Thank you very much for your precious time~'
                 }
             ];
             $rootScope.contactLoaded = true;
@@ -106,6 +113,7 @@ var BaronCV;
             self.experienceResource = self.myResourceService.getExperienceesource();
             self.experienceResource.get({}, function (experienceWrap) {
                 self.$scope.myExperiences = new BaronCV.MyExperiences(experienceWrap);
+                self.$scope.title = experienceWrap.title;
             });
             $rootScope.experienceLoaded = true;
         }
@@ -119,12 +127,14 @@ var BaronCV;
 (function (BaronCV) {
     'use strict';
     var HeaderWrapController = (function () {
-        function HeaderWrapController($scope, pagePositionService, myResourceService, $rootScope) {
+        function HeaderWrapController($scope, pagePositionService, myResourceService, $rootScope, $location, $window) {
             var self = this;
             self.pagePositionService = pagePositionService;
             self.myResourceService = myResourceService;
             self.$scope = $scope;
             self.$scope.controller = this;
+            self.$location = $location;
+            self.$window = $window;
             self.personalInfoResource = self.myResourceService.getPersonalInforResource();
             self.personalInfoResource.get({}, function (personalInfoWrap) {
                 self.$scope.personalInfo = new BaronCV.PersonalInfo(personalInfoWrap);
@@ -142,11 +152,19 @@ var BaronCV;
         HeaderWrapController.prototype.isBackgroudShowed = function () {
             return this.pagePositionService.isBackgroudShowed();
         };
+        HeaderWrapController.prototype.changeToEn = function () {
+            this.$location.url('/home');
+            this.$window.location.reload();
+        };
+        HeaderWrapController.prototype.changeToCn = function () {
+            this.$location.url('/home?locale=cn_zh');
+            this.$window.location.reload();
+        };
         return HeaderWrapController;
     })();
     BaronCV.HeaderWrapController = HeaderWrapController;
 })(BaronCV || (BaronCV = {}));
-BaronCV.HeaderWrapController.$inject = ['$scope', 'pagePositionService', 'myResourceService', '$rootScope'];
+BaronCV.HeaderWrapController.$inject = ['$scope', 'pagePositionService', 'myResourceService', '$rootScope', '$location', '$window'];
 myApp.addController("headerWrapController", BaronCV.HeaderWrapController);
 var BaronCV;
 (function (BaronCV) {
@@ -202,12 +220,21 @@ var BaronCV;
                 var _this = this;
                 this.restrict = 'A';
                 this.link = function (scope, element, attrs, ctrl) {
-                    //element.bind('mouseover', () => {
-                    //	element.addClass('glowing');
-                    //});
-                    //element.bind('mouseleave', () => {
-                    //	element.removeClass('glowing');
-                    //});
+                    element.bind('mouseover', function () {
+                        element.addClass('glowing');
+                        element.removeClass('my-text-muted');
+                    });
+                    element.bind('mouseleave', function () {
+                        var windowHeight = _this.$window.innerHeight;
+                        var scrollHeight = _this.$window.pageYOffset;
+                        var elementTopHeight = element.offset().top;
+                        var elementHeight = element.innerHeight();
+                        var targetHeoght = scrollHeight + windowHeight / 2;
+                        if (elementTopHeight > targetHeoght || elementTopHeight + elementHeight <= targetHeoght) {
+                            element.removeClass('glowing');
+                            element.addClass('my-text-muted');
+                        }
+                    });
                     angular.element(_this.$window).bind('scroll', function () {
                         var windowHeight = _this.$window.innerHeight;
                         var scrollHeight = _this.$window.pageYOffset;
@@ -388,6 +415,7 @@ var BaronCV;
             this.skillResource.get({}, function (skillWrap) {
                 self.skillWrap = skillWrap;
                 self.init();
+                self.title = skillWrap.title;
             });
         };
         GraphData.prototype.init = function () {
@@ -409,33 +437,34 @@ var BaronCV;
     var Services;
     (function (Services) {
         var MyResourceService = (function () {
-            function MyResourceService($resource) {
+            function MyResourceService($resource, $rootScope) {
                 var self = this;
                 self.$resource = $resource;
+                this.locale = $rootScope.locale;
             }
             MyResourceService.prototype.getPersonalInforResource = function () {
-                var url = "app/data/personalInfo.json";
+                var url = "app/data/" + this.locale + "/personalInfo.json";
                 var resource = this.$resource("", {}, {
                     'get': { method: 'GET', url: url }
                 });
                 return resource;
             };
             MyResourceService.prototype.getAboutTextResource = function () {
-                var url = "app/data/about.json";
+                var url = "app/data/" + this.locale + "/about.json";
                 var resource = this.$resource("", {}, {
                     'get': { method: 'GET', url: url }
                 });
                 return resource;
             };
             MyResourceService.prototype.getSkillesource = function () {
-                var url = "app/data/skill.json";
+                var url = "app/data/" + this.locale + "/skill.json";
                 var resource = this.$resource("", {}, {
                     'get': { method: 'GET', url: url }
                 });
                 return resource;
             };
             MyResourceService.prototype.getExperienceesource = function () {
-                var url = "app/data/experience.json";
+                var url = "app/data/" + this.locale + "/experience.json";
                 var resource = this.$resource("", {}, {
                     'get': { method: 'GET', url: url }
                 });
@@ -446,7 +475,7 @@ var BaronCV;
         Services.MyResourceService = MyResourceService;
     })(Services = BaronCV.Services || (BaronCV.Services = {}));
 })(BaronCV || (BaronCV = {}));
-BaronCV.Services.MyResourceService.$inject = ['$resource'];
+BaronCV.Services.MyResourceService.$inject = ['$resource', '$rootScope'];
 myApp.addService('myResourceService', BaronCV.Services.MyResourceService);
 var BaronCV;
 (function (BaronCV) {

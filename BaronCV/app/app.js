@@ -127,12 +127,14 @@ var BaronCV;
 (function (BaronCV) {
     'use strict';
     var HeaderWrapController = (function () {
-        function HeaderWrapController($scope, pagePositionService, myResourceService, $rootScope) {
+        function HeaderWrapController($scope, pagePositionService, myResourceService, $rootScope, $location, $window) {
             var self = this;
             self.pagePositionService = pagePositionService;
             self.myResourceService = myResourceService;
             self.$scope = $scope;
             self.$scope.controller = this;
+            self.$location = $location;
+            self.$window = $window;
             self.personalInfoResource = self.myResourceService.getPersonalInforResource();
             self.personalInfoResource.get({}, function (personalInfoWrap) {
                 self.$scope.personalInfo = new BaronCV.PersonalInfo(personalInfoWrap);
@@ -150,11 +152,19 @@ var BaronCV;
         HeaderWrapController.prototype.isBackgroudShowed = function () {
             return this.pagePositionService.isBackgroudShowed();
         };
+        HeaderWrapController.prototype.changeToEn = function () {
+            this.$location.url('/home');
+            this.$window.location.reload();
+        };
+        HeaderWrapController.prototype.changeToCn = function () {
+            this.$location.url('/home?locale=cn_zh');
+            this.$window.location.reload();
+        };
         return HeaderWrapController;
     })();
     BaronCV.HeaderWrapController = HeaderWrapController;
 })(BaronCV || (BaronCV = {}));
-BaronCV.HeaderWrapController.$inject = ['$scope', 'pagePositionService', 'myResourceService', '$rootScope'];
+BaronCV.HeaderWrapController.$inject = ['$scope', 'pagePositionService', 'myResourceService', '$rootScope', '$location', '$window'];
 myApp.addController("headerWrapController", BaronCV.HeaderWrapController);
 var BaronCV;
 (function (BaronCV) {

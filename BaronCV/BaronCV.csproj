@@ -20,6 +20,11 @@
   <ItemGroup>
     <Content Include="app\css\app.css" />
     <Content Include="app\css\timeline.css" />
+    <Content Include="app\customlib\flag-icon.min.css" />
+    <Content Include="app\flags\1x1\au.svg" />
+    <Content Include="app\flags\1x1\cn.svg" />
+    <Content Include="app\flags\4x3\au.svg" />
+    <Content Include="app\flags\4x3\cn.svg" />
     <Content Include="app\image\City_of_sydney.jpg" />
     <Content Include="app\image\Preloader_5.gif" />
     <Content Include="app\image\footer-bg.jpg" />

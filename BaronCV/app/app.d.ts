@@ -71,9 +71,13 @@ declare module BaronCV {
         private pagePositionService;
         private myResourceService;
         private personalInfoResource;
+        private $location;
+        private $window;
         imagesLoadedEvent: any;
-        constructor($scope: IHeaderWrapCtrlScope, pagePositionService: Services.PagePositionServices, myResourceService: Services.MyResourceService, $rootScope: IRootScope);
+        constructor($scope: IHeaderWrapCtrlScope, pagePositionService: Services.PagePositionServices, myResourceService: Services.MyResourceService, $rootScope: IRootScope, $location: ng.ILocationService, $window: ng.IWindowService);
         isBackgroudShowed(): boolean;
+        changeToEn(): void;
+        changeToCn(): void;
     }
 }
 declare module BaronCV {

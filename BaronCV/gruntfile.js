@@ -122,22 +122,28 @@ module.exports = function (grunt) {
 				dest: '../../dist/app/view',
 				expand: true
 			},
-			appcss: {
-				cwd: './app/css',
-				src: '**/*',
-				dest: '../../dist/app/css',
-				expand: true
-			},
 			data: {
 				cwd: './app/data',
 				src: '**/*',
 				dest: '../../dist/app/data',
 				expand: true
 			},
+			customlib: {
+				cwd: './app/customlib',
+				src: '**/*',
+				dest: '../../dist/app/customlib',
+				expand: true
+			},
 			image: {
 				cwd: './app/image',
 				src: '**/*',
 				dest: '../../dist/app/image',
+				expand: true
+			},
+			flags: {
+				cwd: './app/flags',
+				src: '**/*',
+				dest: '../../dist/app/flags',
 				expand: true
 			}
 		}
@@ -162,12 +168,14 @@ module.exports = function (grunt) {
 		'copy:js',
 		'copy:css',
 		'copy:views',
-		'copy:appcss',
 		'copy:data',
+		'copy:customlib',
 		'copy:image',
+		'copy:flags',
 		'useminPrepare',
 		'concat',
 		'uglify',
+		'cssmin',
 		'usemin'
 	]);
 
