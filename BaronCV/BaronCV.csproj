@@ -66,7 +66,7 @@
     <Content Include="js\angular-cookies\index.js" />
     <Content Include="js\angular-filter\angular-filter.js" />
     <Content Include="js\angular-filter\angular-filter.min.js" />
-    <Content Include="js\imagesloaded\angular-images-loaded.js" />
+    <Content Include="app\customlib\imagesloaded\angular-images-loaded.js" />
     <Content Include="js\angular-loading-bar\loading-bar.js" />
     <Content Include="js\angular-loading-bar\loading-bar.min.js" />
     <Content Include="js\angular-local-storage\angular-local-storage.js" />
@@ -89,8 +89,8 @@
     <Content Include="js\angular\index.js" />
     <Content Include="js\Chart.js\Chart.js" />
     <Content Include="js\Chart.js\Chart.min.js" />
-    <Content Include="js\imagesloaded\imagesloaded.pkgd.js" />
-    <Content Include="js\imagesloaded\imagesloaded.pkgd.min.js" />
+    <Content Include="app\customlib\imagesloaded\imagesloaded.pkgd.js" />
+    <Content Include="app\customlib\imagesloaded\imagesloaded.pkgd.min.js" />
     <Content Include="js\jquery\jquery.js" />
     <Content Include="js\jquery\jquery.min.js" />
     <Content Include="js\ngSmoothScroll\angular-smooth-scroll.js" />
