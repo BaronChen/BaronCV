@@ -56,13 +56,19 @@
 				//var topbarNavEl = angular.element($('#section-topbar ul#nav'));
 				//var topbarAEl = angular.element($('#section-topbar ul#nav a'));
 
-				if (scrollHeight > 0) {
-					this.pagePositionService.setIsBackGroundShowed(true);					
-				} else {
-					this.pagePositionService.setIsBackGroundShowed(false);
-				}
-				topbarScope.$apply();
+				var previousValue = this.pagePositionService.isBackgroudShowed();
+				var newValue = false;
 
+				if (scrollHeight > 0) {
+					newValue = true;								
+				} else {
+					newValue = false;
+				}
+
+				if (previousValue !== newValue) {
+					this.pagePositionService.setIsBackGroundShowed(newValue);	
+					topbarScope.$apply();	
+				}
 			});
 			
 		}

@@ -320,13 +320,18 @@ var BaronCV;
                         //var topbarEl = angular.element($('#topbar-inner'));
                         //var topbarNavEl = angular.element($('#section-topbar ul#nav'));
                         //var topbarAEl = angular.element($('#section-topbar ul#nav a'));
+                        var previousValue = _this.pagePositionService.isBackgroudShowed();
+                        var newValue = false;
                         if (scrollHeight > 0) {
-                            _this.pagePositionService.setIsBackGroundShowed(true);
+                            newValue = true;
                         }
                         else {
-                            _this.pagePositionService.setIsBackGroundShowed(false);
+                            newValue = false;
                         }
-                        topbarScope.$apply();
+                        if (previousValue !== newValue) {
+                            _this.pagePositionService.setIsBackGroundShowed(newValue);
+                            topbarScope.$apply();
+                        }
                     });
                 };
                 var self = this;
