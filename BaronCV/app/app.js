@@ -300,6 +300,7 @@ var BaronCV;
                         var skillswrapElement = document.querySelector('#skillswrap');
                         var skillswrapScope = angular.element(skillswrapElement).scope();
                         var targetHeight = scrollHeight + windowHeight / 3;
+                        var previousPagePosition = _this.pagePositionService.getPosition();
                         if ($contactEl.offset().top <= targetHeight) {
                             _this.pagePositionService.selectPosition(BaronCV.Services.Positions.Contact);
                         }
@@ -330,6 +331,8 @@ var BaronCV;
                         }
                         if (previousValue !== newValue) {
                             _this.pagePositionService.setIsBackGroundShowed(newValue);
+                        }
+                        if (previousValue !== newValue || previousPagePosition !== _this.pagePositionService.getPosition()) {
                             topbarScope.$apply();
                         }
                     });

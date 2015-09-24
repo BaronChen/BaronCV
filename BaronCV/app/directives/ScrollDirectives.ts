@@ -35,6 +35,7 @@
 
 				var targetHeight = scrollHeight + windowHeight/3;
 
+				var previousPagePosition = this.pagePositionService.getPosition();
 
 				if ($contactEl.offset().top <= targetHeight) {
 					this.pagePositionService.selectPosition(Services.Positions.Contact);
@@ -67,6 +68,10 @@
 
 				if (previousValue !== newValue) {
 					this.pagePositionService.setIsBackGroundShowed(newValue);	
+				}
+
+				if (previousValue !== newValue || previousPagePosition !== this.pagePositionService.getPosition()) {
+					
 					topbarScope.$apply();	
 				}
 			});
