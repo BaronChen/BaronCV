@@ -27,6 +27,20 @@
 			margin-top: -64px;
 			margin-left: -64px;
 		}
+
+		.splash .my-spinner {
+			position: fixed;	
+			top: 50%;
+			left: 50%;
+			margin-top: -25px;
+			margin-left: -20px;
+			color: white;
+		}
+
+		.splash .my-spinner .sk-rect {
+			background-color: white;
+		}
+
 	</style>
 
 	<link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
@@ -34,6 +48,7 @@
 	<link rel="stylesheet" href="css/animate.css/animate.min.css">
 	<link rel="stylesheet" href="css/angualar-chart.js/angular-chart.css" />
 	<link rel="stylesheet" href="app/customlib/flag-icon.min.css"/>
+	<link rel="stylesheet" href="css/SpinKit/spinkit.css"/>
 	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
 
@@ -46,7 +61,14 @@
 <body ng-app="baronCV">
 
 	<div class="splash" ng-hide="topbarLoaded && aboutLoaded && headerwrapLoaded && skillLoaded && contactLoaded && experienceLoaded">
-		<img src="app/image/Preloader_5.gif" />
+		<!--<img src="app/image/Preloader_5.gif"/>-->
+		<div class="sk-wave my-spinner">
+			<div class="sk-rect sk-rect1"></div>
+			<div class="sk-rect sk-rect2"></div>
+			<div class="sk-rect sk-rect3"></div>
+			<div class="sk-rect sk-rect4"></div>
+			<div class="sk-rect sk-rect5"></div>
+		</div>
 	</div>
 
 	<ui-view></ui-view>

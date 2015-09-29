@@ -61,7 +61,8 @@ module.exports = function (grunt) {
 					'font-awesome/.': 'font-awesome/css',
 					'bootstrap-social/bootstrap-scocial.css': 'bootstrap-social/bootstrap-social.css',
 					'angualar-chart.js/angular-chart.css': 'angular-chart.js/dist/angular-chart.css',
-					'angualar-chart.js/angular-chart.css.map': 'angular-chart.js/dist/angular-chart.css.map'
+					'angualar-chart.js/angular-chart.css.map': 'angular-chart.js/dist/angular-chart.css.map',
+					'SpinKit/spinkit.css' : 'SpinKit/css/spinkit.css'
 				}
 			},
 			fonts: {

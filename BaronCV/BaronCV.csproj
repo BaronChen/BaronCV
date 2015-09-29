@@ -20,7 +20,6 @@
   <ItemGroup>
     <Content Include="app\css\app.css" />
     <Content Include="app\css\timeline.css" />
-    <Content Include="app\customlib\myDebounce.js" />
     <Content Include="app\customlib\flag-icon.min.css" />
     <Content Include="app\flags\1x1\au.svg" />
     <Content Include="app\flags\1x1\cn.svg" />
@@ -60,6 +59,7 @@
     <Content Include="css\font-awesome\font-awesome.min.css" />
     <Content Include="css\fonts\fontawesome-webfont.svg" />
     <Content Include="css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="css\SpinKit\spinkit.css" />
     <Content Include="favicon.ico" />
     <Content Include="gruntfile.js" />
     <Content Include="index.html" />
