@@ -27,7 +27,6 @@
     <Content Include="app\flags\4x3\cn.svg" />
     <Content Include="app\image\aurora.jpg" />
     <Content Include="app\image\background.jpg" />
-    <Content Include="app\image\blur.png" />
     <Content Include="app\image\City_of_sydney.jpg" />
     <Content Include="app\image\comment.svg" />
     <Content Include="app\image\elixir.jpg" />
