@@ -33,8 +33,6 @@ module.exports = function (grunt) {
 					'angular-filter/angular-filter.js': 'angular-filter/dist/angular-filter.js',
 					'angular-filter/angular-filter.min.js': 'angular-filter/dist/angular-filter.min.js',
 					'ngSmoothScroll/angular-smooth-scroll.js': 'ngSmoothScroll/angular-smooth-scroll.js',
-					'angular-scroll-watch/angular-scroll-watch.js': 'angular-scroll-watch/build/angular-scroll-watch.js',
-					'angular-scroll-watch/angular-scroll-watch.min.js': 'angular-scroll-watch/build/angular-scroll-watch.min.js',
 					'angular-ui-router/angular-ui-router.js': 'angular-ui-router/release/angular-ui-router.js',
 					'angular-ui-router/angular-ui-router.min.js': 'angular-ui-router/release/angular-ui-router.min.js',
 					'Chart.js/Chart.js': 'Chart.js/Chart.js',
@@ -44,7 +42,10 @@ module.exports = function (grunt) {
 					'angualar-chart.js/angular-chart.min.js.map': 'angular-chart.js/dist/angular-chart.min.js.map',
 					'angular-touch/angular-touch.js': 'angular-touch/angular-touch.js',
 					'angular-touch/angular-touch.min.js': 'angular-touch/angular-touch.min.js',
-					'angular-touch/angular-touch.min.js.map': 'angular-touch/angular-touch.min.js.map'
+					'angular-touch/angular-touch.min.js.map': 'angular-touch/angular-touch.min.js.map',
+					'angular-scroll/angular-scroll.js': 'angular-scroll/angular-scroll.js',
+					'angular-scroll/angular-scroll.min.js': 'angular-scroll/angular-scroll.min.js',
+					'angular-scroll/angular-scroll.min.js.map': 'angular-scroll/angular-scroll.min.js.map'
 				}
 			},
 			css: {

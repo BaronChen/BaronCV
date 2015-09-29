@@ -9,7 +9,6 @@
 					url: "/home",
 					templateUrl: "app/view/app.html"
 				});
-
 		}
 	}
 } 

@@ -20,14 +20,21 @@
   <ItemGroup>
     <Content Include="app\css\app.css" />
     <Content Include="app\css\timeline.css" />
+    <Content Include="app\customlib\myDebounce.js" />
     <Content Include="app\customlib\flag-icon.min.css" />
     <Content Include="app\flags\1x1\au.svg" />
     <Content Include="app\flags\1x1\cn.svg" />
     <Content Include="app\flags\4x3\au.svg" />
     <Content Include="app\flags\4x3\cn.svg" />
+    <Content Include="app\image\aurora.jpg" />
+    <Content Include="app\image\background.jpg" />
+    <Content Include="app\image\blur.png" />
     <Content Include="app\image\City_of_sydney.jpg" />
+    <Content Include="app\image\comment.svg" />
+    <Content Include="app\image\elixir.jpg" />
+    <Content Include="app\image\email.svg" />
+    <Content Include="app\image\name.svg" />
     <Content Include="app\image\Preloader_5.gif" />
-    <Content Include="app\image\footer-bg.jpg" />
     <Content Include="app\view\about.html" />
     <Content Include="app\view\app.html" />
     <Content Include="app\view\contact.html" />
@@ -82,8 +89,8 @@
     <Content Include="js\angular-route\angular-route.js" />
     <Content Include="js\angular-route\angular-route.min.js" />
     <Content Include="js\angular-route\index.js" />
-    <Content Include="js\angular-scroll-watch\angular-scroll-watch.js" />
-    <Content Include="js\angular-scroll-watch\angular-scroll-watch.min.js" />
+    <Content Include="js\angular-scroll\angular-scroll.js" />
+    <Content Include="js\angular-scroll\angular-scroll.min.js" />
     <Content Include="js\angular-touch\angular-touch.js" />
     <Content Include="js\angular-touch\angular-touch.min.js" />
     <Content Include="js\angular-ui-router\angular-ui-router.js" />
@@ -164,6 +171,7 @@
     <Content Include="app\data\cn_zh\about.json" />
     <Content Include="app\data\cn_zh\experience.json" />
     <Content Include="app\data\cn_zh\personalInfo.json" />
+    <Content Include="js\angular-scroll\angular-scroll.min.js.map" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -176,18 +184,22 @@
     <TypeScriptCompile Include="app\configuration\config.ts" />
     <TypeScriptCompile Include="app\controller\aboutController.ts" />
     <TypeScriptCompile Include="app\controller\carouselController.ts" />
+    <TypeScriptCompile Include="app\controller\contactController.ts" />
     <TypeScriptCompile Include="app\controller\experienceController.ts" />
     <TypeScriptCompile Include="app\controller\headerWrapController.ts" />
     <TypeScriptCompile Include="app\controller\skillController.ts" />
     <TypeScriptCompile Include="app\controller\topbarController.ts" />
     <TypeScriptCompile Include="app\directives\GlowingDirective.ts" />
     <TypeScriptCompile Include="app\directives\ScrollDirectives.ts" />
+    <TypeScriptCompile Include="app\directives\StopTouchEventDirective.ts" />
     <TypeScriptCompile Include="app\model\AboutText.ts" />
     <TypeScriptCompile Include="app\model\Experien.ts" />
     <TypeScriptCompile Include="app\model\PersonalInfo.ts" />
     <TypeScriptCompile Include="app\model\Skills.ts" />
+    <TypeScriptCompile Include="app\services\debounceHandler.ts" />
     <TypeScriptCompile Include="app\services\pagePositionService.ts" />
     <TypeScriptCompile Include="app\services\myResourceService.ts" />
+    <TypeScriptCompile Include="typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />
     <TypeScriptCompile Include="typings\angular-ui-router\angular-ui-router.d.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular-resource.d.ts" />

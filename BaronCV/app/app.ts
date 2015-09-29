@@ -50,4 +50,4 @@ module BaronCV {
 	}
 }
 
-var myApp = new BaronCV.MyApp("baronCV", ['ngAnimate', 'ngTouch', 'ui.bootstrap', 'ngRoute', 'smoothScroll', 'pc035860.scrollWatch', 'ui.router', 'ngResource', 'chart.js', 'angular-images-loaded']);
+var myApp = new BaronCV.MyApp("baronCV", ['ngAnimate', 'ui.bootstrap', 'ngRoute', 'duScroll', 'ui.router', 'ngResource', 'chart.js', 'angular-images-loaded']);

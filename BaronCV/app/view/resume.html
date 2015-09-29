@@ -26,7 +26,12 @@
 								</p>
 							</div>
 							<div class="timeline-body">
-								<p>{{experience.description}}</p>
+								<ul>
+									<li ng-repeat="desc in experience.description">
+										<p>{{desc}}</p>
+									</li>
+								</ul>
+								
 							</div>
 						</div>
 					</li>

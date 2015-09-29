@@ -49,6 +49,27 @@ declare module BaronCV {
     }
 }
 declare module BaronCV {
+    import ModalService = angular.ui.bootstrap.IModalService;
+    interface IContactControllerScope extends ng.IScope {
+        controller: ContactController;
+    }
+    class EmailDetail {
+        name: string;
+        email: string;
+        message: string;
+    }
+    class ContactController {
+        $scope: IContactControllerScope;
+        private $modal;
+        private emailModal;
+        emailDetail: EmailDetail;
+        constructor($scope: IContactControllerScope, $modal: ModalService);
+        openEmailForm(): void;
+        closeEmailForm(): void;
+        onSubmit(): void;
+    }
+}
+declare module BaronCV {
     interface IExperienceCtrlScope extends ng.IScope {
         title: string;
         controller: ExperienceController;
@@ -114,8 +135,10 @@ declare module BaronCV.Directives {
         restrict: string;
         private $animate;
         private $window;
-        constructor($animate: ng.IAnimateService, $window: ng.IWindowService);
+        private $timeout;
+        constructor($animate: ng.IAnimateService, $window: ng.IWindowService, $timeout: ng.ITimeoutService);
         link: (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => void;
+        doScroll(element: ng.IAugmentedJQuery): void;
         static factory(): ng.IDirectiveFactory;
     }
 }
@@ -126,8 +149,27 @@ declare module BaronCV.Directives {
         private $window;
         private $document;
         private pagePositionService;
-        constructor($location: ng.ILocationService, $window: ng.IWindowService, $document: ng.IDocumentService, pagePositionService: Services.PagePositionServices);
+        private $workEl;
+        private $resumeEl;
+        private $aboutEl;
+        private $headerEl;
+        private $contactEl;
+        private $headerwrapEl;
+        private previousOffset;
+        private $timeout;
+        constructor($location: ng.ILocationService, $window: ng.IWindowService, $document: ng.IDocumentService, pagePositionService: Services.PagePositionServices, $timeout: ng.ITimeoutService);
         link: (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => void;
+        doScroll(): void;
+        static factory(): ng.IDirectiveFactory;
+    }
+}
+declare module BaronCV.Directives {
+    class StopTouchEventDirective implements ng.IDirective {
+        restrict: string;
+        private $animate;
+        private $window;
+        constructor();
+        link: (scope: ng.IScope, element: ng.IAugmentedJQuery, attr: any, ctrl: any) => void;
         static factory(): ng.IDirectiveFactory;
     }
 }
@@ -143,7 +185,7 @@ declare module BaronCV {
         company: string;
         time: string;
         badge: string;
-        description: string;
+        description: string[];
         badgeStyle: string;
     }
     class MyExperiences {
@@ -181,6 +223,17 @@ declare module BaronCV {
         getData(): void;
         init(): void;
         constructor(skillResource: Services.ISkillResource);
+    }
+}
+declare module BaronCV.Services {
+    class DebounceHandler {
+        private $timeout;
+        private fn;
+        private interval;
+        private previousTask;
+        private actionFirstOne;
+        constructor($timeout: ng.ITimeoutService, interval: number, actionFirstOne: boolean);
+        process(fn: Function): ng.IPromise<any>;
     }
 }
 declare module BaronCV.Services {

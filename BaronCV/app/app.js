@@ -33,7 +33,7 @@ var BaronCV;
     })();
     BaronCV.MyApp = MyApp;
 })(BaronCV || (BaronCV = {}));
-var myApp = new BaronCV.MyApp("baronCV", ['ngAnimate', 'ngTouch', 'ui.bootstrap', 'ngRoute', 'smoothScroll', 'pc035860.scrollWatch', 'ui.router', 'ngResource', 'chart.js', 'angular-images-loaded']);
+var myApp = new BaronCV.MyApp("baronCV", ['ngAnimate', 'ui.bootstrap', 'ngRoute', 'duScroll', 'ui.router', 'ngResource', 'chart.js', 'angular-images-loaded']);
 var BaronCV;
 (function (BaronCV) {
     var Config;
@@ -86,13 +86,20 @@ var BaronCV;
             self.$scope.myInterval = 3000;
             var slides = self.$scope.slides = [
                 {
-                    text: 'As a full stack developer, I enjoy doing logical and algorithmic stuff. '
+                    text: 'Physicists analyze systems. Web scientists, however, can create the systems.',
+                    person: 'Tim Berners-Lee'
                 },
                 {
-                    text: 'I love my life and my work. Most importantly, I am always looking for opportunities to make a difference to the world.'
+                    text: 'Measuring programming progress by lines of code is like measuring aircraft building progress by weight.',
+                    person: 'Bill Gates'
                 },
                 {
-                    text: 'Thank you very much for your precious time~'
+                    text: 'I think Microsoft named .Net so it wouldn’t show up in a Unix directory listing.',
+                    person: 'Oktal'
+                },
+                {
+                    text: 'Don’t worry if it doesn’t work right. If everything did, you’d be out of a job.',
+                    person: 'My mom'
                 }
             ];
             $rootScope.contactLoaded = true;
@@ -103,6 +110,52 @@ var BaronCV;
 })(BaronCV || (BaronCV = {}));
 BaronCV.CarouselController.$inject = ['$scope', 'myResourceService', '$rootScope'];
 myApp.addController('carouselController', BaronCV.CarouselController);
+var BaronCV;
+(function (BaronCV) {
+    var EmailDetail = (function () {
+        function EmailDetail() {
+        }
+        return EmailDetail;
+    })();
+    BaronCV.EmailDetail = EmailDetail;
+    var ContactController = (function () {
+        function ContactController($scope, $modal) {
+            var self = this;
+            self.$scope = $scope;
+            self.$scope.controller = this;
+            self.$modal = $modal;
+            self.emailDetail = new EmailDetail();
+        }
+        ContactController.prototype.openEmailForm = function () {
+            var self = this;
+            self.emailModal = self.$modal.open({
+                animation: true,
+                templateUrl: 'emailModal',
+                windowClass: 'email-form',
+                backdropClass: 'email-form-backdrop',
+                scope: self.$scope,
+                keyboard: true
+            });
+        };
+        ContactController.prototype.closeEmailForm = function () {
+            this.emailModal.dismiss('cancel');
+        };
+        ContactController.prototype.onSubmit = function () {
+            //$http is good....However, in this case it may be just too clever that it always send an option header first...
+            $.ajax({
+                url: "//formspree.io/baron.zhongyangchen@gmail.com",
+                method: "POST",
+                data: { name: this.emailDetail.name, email: this.emailDetail.email, message: this.emailDetail.message, _subject: 'Message from personal site' },
+                dataType: 'json'
+            });
+            this.closeEmailForm();
+        };
+        return ContactController;
+    })();
+    BaronCV.ContactController = ContactController;
+})(BaronCV || (BaronCV = {}));
+BaronCV.ContactController.$inject = ['$scope', '$modal'];
+myApp.addController("contactController", BaronCV.ContactController);
 var BaronCV;
 (function (BaronCV) {
     var ExperienceController = (function () {
@@ -226,7 +279,7 @@ var BaronCV;
     var Directives;
     (function (Directives) {
         var GlowingDirective = (function () {
-            function GlowingDirective($animate, $window) {
+            function GlowingDirective($animate, $window, $timeout) {
                 var _this = this;
                 this.restrict = 'A';
                 this.link = function (scope, element, attrs, ctrl) {
@@ -245,29 +298,35 @@ var BaronCV;
                             element.addClass('my-text-muted');
                         }
                     });
+                    var debounceHandler = new BaronCV.Services.DebounceHandler(_this.$timeout, 300, false);
                     angular.element(_this.$window).bind('scroll', function () {
-                        var windowHeight = _this.$window.innerHeight;
-                        var scrollHeight = _this.$window.pageYOffset;
-                        var elementTopHeight = element.offset().top;
-                        var elementHeight = element.innerHeight();
-                        var targetHeoght = scrollHeight + windowHeight / 2;
-                        if (elementTopHeight <= targetHeoght && elementTopHeight + elementHeight > targetHeoght) {
-                            element.addClass('glowing');
-                            element.removeClass('my-text-muted');
-                        }
-                        else {
-                            element.removeClass('glowing');
-                            element.addClass('my-text-muted');
-                        }
+                        debounceHandler.process(function () { _this.doScroll(element); });
                     });
                 };
                 var self = this;
                 self.$animate = $animate;
                 self.$window = $window;
+                self.$timeout = $timeout;
             }
+            GlowingDirective.prototype.doScroll = function (element) {
+                //console.log("glowing scroll called");
+                var windowHeight = this.$window.innerHeight;
+                var scrollHeight = this.$window.pageYOffset;
+                var elementTopHeight = element.offset().top;
+                var elementHeight = element.innerHeight();
+                var targetHeoght = scrollHeight + windowHeight / 2;
+                if (elementTopHeight <= targetHeoght && elementTopHeight + elementHeight > targetHeoght) {
+                    element.addClass('glowing');
+                    element.removeClass('my-text-muted');
+                }
+                else {
+                    element.removeClass('glowing');
+                    element.addClass('my-text-muted');
+                }
+            };
             GlowingDirective.factory = function () {
-                var directive = function ($animate, $window) { return new GlowingDirective($animate, $window); };
-                directive.$inject = ['$animate', '$window'];
+                var directive = function ($animate, $window, debounce) { return new GlowingDirective($animate, $window, debounce); };
+                directive.$inject = ['$animate', '$window', '$timeout'];
                 return directive;
             };
             return GlowingDirective;
@@ -281,60 +340,13 @@ var BaronCV;
     var Directives;
     (function (Directives) {
         var ScrollDirective = (function () {
-            function ScrollDirective($location, $window, $document, pagePositionService) {
+            function ScrollDirective($location, $window, $document, pagePositionService, $timeout) {
                 var _this = this;
                 this.restrict = 'A';
                 this.link = function (scope, element, attrs, ctrl) {
+                    var debounceHandler = new BaronCV.Services.DebounceHandler(_this.$timeout, 300, true);
                     angular.element(_this.$window).bind('scroll', function () {
-                        var $workEl = angular.element($('#skillswrap'));
-                        var $resumeEl = angular.element($('#resume'));
-                        var $aboutEl = angular.element($('#about'));
-                        var $headerEl = angular.element($('#headerwrap'));
-                        var $contactEl = angular.element($('#contactWrap'));
-                        var $headerwrapEl = angular.element($('#headerwrap'));
-                        var headerOffset = $headerwrapEl.offset().top;
-                        var windowHeight = _this.$window.innerHeight;
-                        var scrollHeight = _this.$window.pageYOffset;
-                        var topbarElement = document.querySelector('#section-topbar');
-                        var topbarScope = angular.element(topbarElement).scope();
-                        var skillswrapElement = document.querySelector('#skillswrap');
-                        var skillswrapScope = angular.element(skillswrapElement).scope();
-                        var targetHeight = scrollHeight + windowHeight / 3;
-                        var previousPagePosition = _this.pagePositionService.getPosition();
-                        if ($contactEl.offset().top <= targetHeight) {
-                            _this.pagePositionService.selectPosition(BaronCV.Services.Positions.Contact);
-                        }
-                        else if ($workEl.offset().top <= targetHeight) {
-                            _this.pagePositionService.selectPosition(BaronCV.Services.Positions.Work);
-                            skillswrapScope.graphData.mapData();
-                        }
-                        else if ($resumeEl.offset().top <= targetHeight) {
-                            _this.pagePositionService.selectPosition(BaronCV.Services.Positions.Resume);
-                        }
-                        else if ($aboutEl.offset().top <= targetHeight) {
-                            _this.pagePositionService.selectPosition(BaronCV.Services.Positions.About);
-                        }
-                        else if ($headerEl.offset().top <= targetHeight) {
-                            _this.pagePositionService.selectPosition(BaronCV.Services.Positions.Undefined);
-                        }
-                        //top bar class changes
-                        //var topbarEl = angular.element($('#topbar-inner'));
-                        //var topbarNavEl = angular.element($('#section-topbar ul#nav'));
-                        //var topbarAEl = angular.element($('#section-topbar ul#nav a'));
-                        var previousValue = _this.pagePositionService.isBackgroudShowed();
-                        var newValue = false;
-                        if (scrollHeight > 0) {
-                            newValue = true;
-                        }
-                        else {
-                            newValue = false;
-                        }
-                        if (previousValue !== newValue) {
-                            _this.pagePositionService.setIsBackGroundShowed(newValue);
-                        }
-                        if (previousValue !== newValue || previousPagePosition !== _this.pagePositionService.getPosition()) {
-                            topbarScope.$apply();
-                        }
+                        debounceHandler.process(function () { _this.doScroll(); });
                     });
                 };
                 var self = this;
@@ -342,12 +354,69 @@ var BaronCV;
                 self.$window = $window;
                 self.$document = $document;
                 self.pagePositionService = pagePositionService;
+                this.previousOffset = 0;
+                this.$timeout = $timeout;
             }
+            ScrollDirective.prototype.doScroll = function () {
+                var self = this;
+                //console.log("topbar scroll called!");
+                var scrollHeight = self.$window.pageYOffset;
+                if (!self.$workEl) {
+                    self.$workEl = angular.element($('#skillswrap'));
+                    self.$resumeEl = angular.element($('#resume'));
+                    self.$aboutEl = angular.element($('#about'));
+                    self.$headerEl = angular.element($('#headerwrap'));
+                    self.$contactEl = angular.element($('#footwrap'));
+                    self.$headerwrapEl = angular.element($('#headerwrap'));
+                }
+                //var headerOffset = this.$headerwrapEl.offset().top;
+                var windowHeight = this.$window.innerHeight;
+                var topbarElement = document.querySelector('#section-topbar');
+                var topbarScope = angular.element(topbarElement).scope();
+                var skillswrapElement = document.querySelector('#skillswrap');
+                var skillswrapScope = angular.element(skillswrapElement).scope();
+                var targetHeight = scrollHeight + windowHeight / 3;
+                var previousPagePosition = this.pagePositionService.getPosition();
+                if (this.$contactEl.offset().top <= targetHeight || scrollHeight + windowHeight >= this.$document.innerHeight()) {
+                    this.pagePositionService.selectPosition(BaronCV.Services.Positions.Contact);
+                }
+                else if (self.$workEl.offset().top <= targetHeight) {
+                    this.pagePositionService.selectPosition(BaronCV.Services.Positions.Work);
+                    skillswrapScope.graphData.mapData();
+                }
+                else if (self.$resumeEl.offset().top <= targetHeight) {
+                    this.pagePositionService.selectPosition(BaronCV.Services.Positions.Resume);
+                }
+                else if (self.$aboutEl.offset().top <= targetHeight) {
+                    this.pagePositionService.selectPosition(BaronCV.Services.Positions.About);
+                }
+                else if (self.$headerEl.offset().top <= targetHeight) {
+                    this.pagePositionService.selectPosition(BaronCV.Services.Positions.Undefined);
+                }
+                //top bar class changes
+                //var topbarEl = angular.element($('#topbar-inner'));
+                //var topbarNavEl = angular.element($('#section-topbar ul#nav'));
+                //var topbarAEl = angular.element($('#section-topbar ul#nav a'));
+                var previousValue = this.pagePositionService.isBackgroudShowed();
+                var newValue = false;
+                if (scrollHeight > 0) {
+                    newValue = true;
+                }
+                else {
+                    newValue = false;
+                }
+                if (previousValue !== newValue) {
+                    this.pagePositionService.setIsBackGroundShowed(newValue);
+                }
+                if (previousValue !== newValue || previousPagePosition !== this.pagePositionService.getPosition()) {
+                    topbarScope.$apply();
+                }
+            };
             ScrollDirective.factory = function () {
-                var directive = function ($location, $window, $document, pagePositionService) {
-                    return new ScrollDirective($location, $window, $document, pagePositionService);
+                var directive = function ($location, $window, $document, pagePositionService, debounce) {
+                    return new ScrollDirective($location, $window, $document, pagePositionService, debounce);
                 };
-                directive.$inject = ['$location', '$window', '$document', 'pagePositionService'];
+                directive.$inject = ['$location', '$window', '$document', 'pagePositionService', '$timeout'];
                 return directive;
             };
             return ScrollDirective;
@@ -356,6 +425,34 @@ var BaronCV;
     })(Directives = BaronCV.Directives || (BaronCV.Directives = {}));
 })(BaronCV || (BaronCV = {}));
 myApp.addDirective("myScroll", BaronCV.Directives.ScrollDirective.factory());
+var BaronCV;
+(function (BaronCV) {
+    var Directives;
+    (function (Directives) {
+        //this directive is for a Angular touch bug work around
+        var StopTouchEventDirective = (function () {
+            function StopTouchEventDirective() {
+                this.restrict = 'A';
+                this.link = function (scope, element, attr, ctrl) {
+                    if (attr && attr.stopEvent) {
+                        element.on(attr.stopEvent, function (e) {
+                            e.stopPropagation();
+                        });
+                    }
+                };
+                var self = this;
+            }
+            StopTouchEventDirective.factory = function () {
+                var directive = function () { return new StopTouchEventDirective(); };
+                directive.$inject = [];
+                return directive;
+            };
+            return StopTouchEventDirective;
+        })();
+        Directives.StopTouchEventDirective = StopTouchEventDirective;
+    })(Directives = BaronCV.Directives || (BaronCV.Directives = {}));
+})(BaronCV || (BaronCV = {}));
+myApp.addDirective("stopEvent", BaronCV.Directives.StopTouchEventDirective.factory());
 var BaronCV;
 (function (BaronCV) {
     'use strict';
@@ -434,6 +531,7 @@ var BaronCV;
                 self.skillWrap = skillWrap;
                 self.init();
                 self.title = skillWrap.title;
+                //self.mapData();
             });
         };
         GraphData.prototype.init = function () {
@@ -449,6 +547,36 @@ var BaronCV;
         return GraphData;
     })();
     BaronCV.GraphData = GraphData;
+})(BaronCV || (BaronCV = {}));
+var BaronCV;
+(function (BaronCV) {
+    var Services;
+    (function (Services) {
+        var DebounceHandler = (function () {
+            function DebounceHandler($timeout, interval, actionFirstOne) {
+                this.$timeout = $timeout;
+                this.interval = interval;
+                this.actionFirstOne = actionFirstOne;
+            }
+            DebounceHandler.prototype.process = function (fn) {
+                var _this = this;
+                this.fn = fn;
+                if (this.previousTask) {
+                    this.$timeout.cancel(this.previousTask);
+                }
+                else if (this.actionFirstOne) {
+                    this.fn.apply(this);
+                }
+                this.previousTask = this.$timeout(function () {
+                    _this.fn.apply(_this);
+                    _this.previousTask = null;
+                }, this.interval);
+                return this.previousTask;
+            };
+            return DebounceHandler;
+        })();
+        Services.DebounceHandler = DebounceHandler;
+    })(Services = BaronCV.Services || (BaronCV.Services = {}));
 })(BaronCV || (BaronCV = {}));
 var BaronCV;
 (function (BaronCV) {

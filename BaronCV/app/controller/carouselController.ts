@@ -22,13 +22,20 @@
 
 			var slides = self.$scope.slides = [
 				{
-					text: 'As a full stack developer, I enjoy doing logical and algorithmic stuff. '
+					text: 'Physicists analyze systems. Web scientists, however, can create the systems.',
+					person: 'Tim Berners-Lee'
 				},
 				{
-					text: 'I love my life and my work. Most importantly, I am always looking for opportunities to make a difference to the world.'
+					text: 'Measuring programming progress by lines of code is like measuring aircraft building progress by weight.',
+					person: 'Bill Gates'
 				},
 				{
-					text: 'Thank you very much for your precious time~'
+					text: 'I think Microsoft named .Net so it wouldn’t show up in a Unix directory listing.',
+					person:'Oktal'
+				},
+				{
+					text: 'Don’t worry if it doesn’t work right. If everything did, you’d be out of a job.',
+					person:'My mom'
 				}
 			];
 

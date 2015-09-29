@@ -39,6 +39,9 @@
 				self.skillWrap = skillWrap;
 				self.init();
 				self.title = skillWrap.title;
+
+				//self.mapData();
+
 			});
 		}
 

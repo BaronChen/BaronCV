@@ -7,7 +7,7 @@
             "time": "Jul 2014 - Now",
             "badge": "glyphicon-file",
             "badgeStyle": "success",
-            "description": "Class is an Australian market leader in the SMSF finacial industry. Class provides the financial services sector with innovative software solutions and is the developer of the first end-to-end online SMSF administration and reporting software, Class Super and Class Investment Reporter. As a full-stack software engineer at Class, I am familiar with various cutting-edge technologies, and brought up to be an excellent developer and designer."
+            "description": [ "Class is an Australian market leader in the SMSF finacial industry.", "Class provides the financial services sector with innovative software solutions and is the developer of the first end-to-end online SMSF administration and reporting software, Class Super and Class Investment Reporter."," As a full-stack software engineer at Class, I am familiar with various cutting-edge technologies, and brought up to be an excellent developer and designer." ]
         },
         {
             "title": "Full Stack .Net Programmer",
@@ -15,7 +15,7 @@
             "time": "Sep 2013 - Jul 2014",
             "badge": "glyphicon-align-justify",
             "badgeStyle": "warning",
-            "description": "As a full-stack developer, I was involved in the whole SDLC, from analyse to release. My major responsibilities include: 1. Confirmed project requirements by analysing program objective 2. Object modelling and databases design. 3. Developed various applications base on requirements, including Web application, WPF, Web Services and VBA plugins. 4. Maintain databases and company daily operation system."
+            "description": [ "As a full-stack developer, I was involved in the whole SDLC, from analyse to release. My major responsibilities include:", "Confirmed project requirements by analysing program objective", " Object modelling and databases design.", "Developed various applications base on requirements, including Web application, WPF, Web Services and VBA plugins.", "Maintain databases and company daily operation system." ]
         },
         {
             "title": "Master of Information Technology",
@@ -23,7 +23,7 @@
             "time": "Jul 2011 - Jul 2013",
             "badge": "glyphicon-book",
             "badgeStyle": "info",
-            "description": "Achieved distinction average with a WAM of 83.25 and won CSE Postgraduate Performance Award twice. (7th place in 2012 and 3rd place in 2013. Was nominated to two specialisations: Database Systems and e-Commerce Systems"
+            "description": [ "Achieved distinction average with a WAM of 83.25.", "Won CSE Postgraduate Performance Award twice. (7th place in 2012 and 3rd place in 2013).", "Was nominated to two specialisations: Database Systems and e-Commerce Systems" ]
         },
         {
             "title": "Bachelor of Automation Engineering",
@@ -31,7 +31,7 @@
             "time": "Jul 2007 - Jun 2011",
             "badge": "glyphicon-folder-open",
             "badgeStyle": "danger",
-            "description": "Achieved distinction average among all subjects and won performance rewards in 2008, 2010 and 2011. Made major contribution to a project about detecting planes from point cloud data in Computer Vision (One of the best designs of Zhejiang University in 2011)"
+            "description": [ "Achieved distinction average among all subjects", "Won performance rewards in 2008, 2010 and 2011.", "Made major contribution to a project about detecting planes from point cloud data in Computer Vision (One of the best designs of Zhejiang University in 2011)" ]
         }
     ]
 

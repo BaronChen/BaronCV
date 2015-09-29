@@ -5,7 +5,7 @@
 		company: string;
 		time: string;
 		badge: string;
-		description: string;
+		description: string[];
 		badgeStyle:string;
 
 	}
