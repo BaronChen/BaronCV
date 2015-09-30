@@ -10,7 +10,7 @@
 		name: string;
 		email: string;
 		message: string;
-	}
+     }
 
 	 export class ContactController {
 		 public $scope: IContactControllerScope;
@@ -50,12 +50,14 @@
 
 		 onSubmit() {
 			 //$http is good....However, in this case it may be just too clever that it always send an option header first...
-			 $.ajax({
-			     url: "//formspree.io/baron.zhongyangchen@gmail.com",
-			     method: "POST",
-				 data: { name: this.emailDetail.name, email: this.emailDetail.email, message: this.emailDetail.message,  _subject: 'Message from personal site' },
-				 dataType: 'json'
-			 });
+             var setting: JQueryAjaxSettings = {
+                 url: '//formspree.io/baron.zhongyangchen@gmail.com',
+                 type: "Post",
+                 data: { name: this.emailDetail.name, email: this.emailDetail.email, message: this.emailDetail.message, _subject: 'Message from personal site' },
+                 dataType: "json"
+             };     
+
+             $.ajax(setting);
 			
 			 this.closeEmailForm();
 		 }

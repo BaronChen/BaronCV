@@ -142,12 +142,13 @@ var BaronCV;
         };
         ContactController.prototype.onSubmit = function () {
             //$http is good....However, in this case it may be just too clever that it always send an option header first...
-            $.ajax({
-                url: "//formspree.io/baron.zhongyangchen@gmail.com",
-                method: "POST",
+            var setting = {
+                url: '//formspree.io/baron.zhongyangchen@gmail.com',
+                type: "Post",
                 data: { name: this.emailDetail.name, email: this.emailDetail.email, message: this.emailDetail.message, _subject: 'Message from personal site' },
-                dataType: 'json'
-            });
+                dataType: "json"
+            };
+            $.ajax(setting);
             this.closeEmailForm();
         };
         return ContactController;
@@ -582,6 +583,40 @@ var BaronCV;
 (function (BaronCV) {
     var Services;
     (function (Services) {
+        (function (Positions) {
+            Positions[Positions["Undefined"] = 0] = "Undefined";
+            Positions[Positions["About"] = 1] = "About";
+            Positions[Positions["Resume"] = 2] = "Resume";
+            Positions[Positions["Work"] = 3] = "Work";
+            Positions[Positions["Contact"] = 4] = "Contact";
+        })(Services.Positions || (Services.Positions = {}));
+        var Positions = Services.Positions;
+        var PagePositionServices = (function () {
+            function PagePositionServices() {
+            }
+            PagePositionServices.prototype.selectPosition = function (position) {
+                this.pagePosition = position;
+            };
+            PagePositionServices.prototype.getPosition = function () {
+                return this.pagePosition;
+            };
+            PagePositionServices.prototype.setIsBackGroundShowed = function (showed) {
+                this.isBackGroundShowed = showed;
+            };
+            PagePositionServices.prototype.isBackgroudShowed = function () {
+                return this.isBackGroundShowed;
+            };
+            return PagePositionServices;
+        })();
+        Services.PagePositionServices = PagePositionServices;
+    })(Services = BaronCV.Services || (BaronCV.Services = {}));
+})(BaronCV || (BaronCV = {}));
+BaronCV.Services.PagePositionServices.$inject = [];
+myApp.addService('pagePositionService', BaronCV.Services.PagePositionServices);
+var BaronCV;
+(function (BaronCV) {
+    var Services;
+    (function (Services) {
         var MyResourceService = (function () {
             function MyResourceService($resource, $rootScope) {
                 var self = this;
@@ -623,38 +658,4 @@ var BaronCV;
 })(BaronCV || (BaronCV = {}));
 BaronCV.Services.MyResourceService.$inject = ['$resource', '$rootScope'];
 myApp.addService('myResourceService', BaronCV.Services.MyResourceService);
-var BaronCV;
-(function (BaronCV) {
-    var Services;
-    (function (Services) {
-        (function (Positions) {
-            Positions[Positions["Undefined"] = 0] = "Undefined";
-            Positions[Positions["About"] = 1] = "About";
-            Positions[Positions["Resume"] = 2] = "Resume";
-            Positions[Positions["Work"] = 3] = "Work";
-            Positions[Positions["Contact"] = 4] = "Contact";
-        })(Services.Positions || (Services.Positions = {}));
-        var Positions = Services.Positions;
-        var PagePositionServices = (function () {
-            function PagePositionServices() {
-            }
-            PagePositionServices.prototype.selectPosition = function (position) {
-                this.pagePosition = position;
-            };
-            PagePositionServices.prototype.getPosition = function () {
-                return this.pagePosition;
-            };
-            PagePositionServices.prototype.setIsBackGroundShowed = function (showed) {
-                this.isBackGroundShowed = showed;
-            };
-            PagePositionServices.prototype.isBackgroudShowed = function () {
-                return this.isBackGroundShowed;
-            };
-            return PagePositionServices;
-        })();
-        Services.PagePositionServices = PagePositionServices;
-    })(Services = BaronCV.Services || (BaronCV.Services = {}));
-})(BaronCV || (BaronCV = {}));
-BaronCV.Services.PagePositionServices.$inject = [];
-myApp.addService('pagePositionService', BaronCV.Services.PagePositionServices);
 //# sourceMappingURL=app.js.map

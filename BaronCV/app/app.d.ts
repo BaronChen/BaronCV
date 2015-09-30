@@ -237,6 +237,23 @@ declare module BaronCV.Services {
     }
 }
 declare module BaronCV.Services {
+    enum Positions {
+        Undefined = 0,
+        About = 1,
+        Resume = 2,
+        Work = 3,
+        Contact = 4,
+    }
+    class PagePositionServices {
+        private pagePosition;
+        private isBackGroundShowed;
+        selectPosition(position: Positions): void;
+        getPosition(): Positions;
+        setIsBackGroundShowed(showed: boolean): void;
+        isBackgroudShowed(): boolean;
+    }
+}
+declare module BaronCV.Services {
     interface IPersonalInfoWrap extends ng.resource.IResource<IPersonalInfoWrap> {
         firstName: string;
         lastName: string;
@@ -274,22 +291,5 @@ declare module BaronCV.Services {
         getAboutTextResource(): IAboutTextResource;
         getSkillesource(): ISkillResource;
         getExperienceesource(): IExperienceResource;
-    }
-}
-declare module BaronCV.Services {
-    enum Positions {
-        Undefined = 0,
-        About = 1,
-        Resume = 2,
-        Work = 3,
-        Contact = 4,
-    }
-    class PagePositionServices {
-        private pagePosition;
-        private isBackGroundShowed;
-        selectPosition(position: Positions): void;
-        getPosition(): Positions;
-        setIsBackGroundShowed(showed: boolean): void;
-        isBackgroudShowed(): boolean;
     }
 }
